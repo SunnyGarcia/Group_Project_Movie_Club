@@ -1,4 +1,22 @@
 {
+  "name": "group_project_movie_club",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SunnyGarcia/Group_Project_Movie_Club.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SunnyGarcia/Group_Project_Movie_Club/issues"
+  },
+  "homepage": "https://github.com/SunnyGarcia/Group_Project_Movie_Club#readme",
   "dependencies": {
     "cookie-parser": "^1.4.6",
     "cookie-session": "^2.0.0",
@@ -6,7 +24,7 @@
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.4.6",
+    "mongoose": "^6.4.7",
     "nodemon": "^2.0.19"
   }
 }
