@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/SunnyGarcia/Group_Project_Movie_Club#readme",
   "dependencies": {
-    "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.6",
     "cookie-session": "^2.0.0",
     "cors": "^2.8.5",
