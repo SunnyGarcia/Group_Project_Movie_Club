@@ -61,6 +61,8 @@ else{
     res.cookie("usertoken", 
         jwt.sign({
             user_id: userQuery._id,
+            email: userQuery.email,
+            username: userQuery.firstName
             }, 
             process.env.JWT_SECRET), 
             {
@@ -70,6 +72,7 @@ else{
             .json({msg: "Successful Login!",
             user_id: userQuery._id ,
             firstName: userQuery.firstName,
+            userLoggedIn: userQuery.firstname
             });
 }
 };
@@ -79,6 +82,28 @@ const logout = async (req, res) => {
     res.clearCookie("usertoken");
     res.json({message: "Logout Successful."})
     };
+
+const findAllUsers = async (req, res) => {
+    User.find()
+        .then((allUsers) => {
+            res.json(allUsers);
+        })
+        .catch((err) => {
+            console.log("Find All Users Failed");
+            res.json({ message: "Something went wrong in findAll", error: err})
+        })
+}
+
+const getLoggedInUser = async (req, res) => {
+    User.findOne({_id: req.jwtpayload.id})
+        .then((user) => {
+            console.log(user);
+            res.json(user);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+}
 
 const getUser = (req, res) =>{
         User.findById({_id: req.params._id})
@@ -92,6 +117,6 @@ const getUser = (req, res) =>{
             });
     
         }
-module.exports = {getUser, login, logout, register};
+module.exports = {findAllUsers, login, logout, register, getUser, getLoggedInUser};
 
 
