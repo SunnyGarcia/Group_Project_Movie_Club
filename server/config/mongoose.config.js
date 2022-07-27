@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const dbName = "petshelterdb";
+const dbName = "movieclubdb";
 
 mongoose.connect(`mongodb://localhost/${dbName}`,{
  useNewUrlParser: true,
