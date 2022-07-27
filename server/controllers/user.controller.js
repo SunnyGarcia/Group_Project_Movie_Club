@@ -29,53 +29,70 @@ let newUser = new User(body);
     }
 }
 
-const login = async (req, res) => {
-    const {body} = req;
+    const login = async (req, res) => {
+        User.findOne({email: req.body.email})
+            .then((userRecord) => {
+                if(userRecord === null){
+                    res.status(400).json({message: "Invalid Login Attempt"})
+                }
+                else {
+                    bcrypt.compare(req.body.password, userRecord.password)
+                        .then((isPasswordValid) => {
+                            if(isPasswordValid) {
+                                console.log("Password is valid");
+                                res.cookie(
+                                    "usertoken",
+                                    jwt.sign(
+                                        {
+                                            id: userRecord._id,
+                                            email: userRecord.email,
+                                            username: userRecord.username
+                                        },
+                                        process.env.JWT_SECRET
+                                    ),
+                                        {
+                                            httpOnly: true,
+                                            expires: new Date(Date.now() + 90000000)
+                                        }
+                                ).json({
+                                    message: "Successfully",
+                                    userLoggedIn: userRecord.username,
+                                    userId: userRecord._id
+                                });
+                            }
+                            else {
+                                res.status(400).json({message: "Invalid Attempt"})
+                            }
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                            res.status(400).json({message: "Invalid Attempt 2"});
+                        })
+                }
 
-    if(!body.email){
-        res.status(400).json({message: "Must provide email address."});
-        return;
-    }
-    let userQuery;
-    try{
-        userQuery =  await User.findOne({email: body.email});
-    }
-    catch(error){
-        res.status(400).json({message: "Email not found."});
-    }
-    console.log("Query: ", userQuery);
-
-    if(userQuery === null){
-        res.status(400).json({message: "Email not found."});
-        return;
-    }
-
-const verifyPassword = bcrypt.compareSync(body.password, userQuery.password);
-if(!verifyPassword){
-    res.status(400).json({message: "Email or password is incorrect."});
-    return;
-}
-
-else{
-    console.log("Password is valid.");
-    res.cookie("usertoken", 
-        jwt.sign({
-            user_id: userQuery._id,
-            email: userQuery.email,
-            username: userQuery.firstName
-            }, 
-            process.env.JWT_SECRET), 
-            {
-            httpOnly: true,
-            expires: new Date(Date.now() + 9000000),
             })
-            .json({msg: "Successful Login!",
-            user_id: userQuery._id ,
-            firstName: userQuery.firstName,
-            userLoggedIn: userQuery.firstname
-            });
-}
-};
+            .catch((err) => {
+                console.log(err);
+                res.status(400).json({message: "Invalid Attempt 3"});
+            })
+    }
+
+    const getLoggedInUser = async (req, res) => {
+        // const decodedJWT = jwt.decode(req.cookies.usertoken, {
+        //     complete: true
+        // })
+
+        User.findOne({_id: req.jwtpayload.id})
+            .then((user) => {
+                console.log(user);
+                res.json(user)
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+
+
 
 //Logout User
 const logout = async (req, res) => {
@@ -94,16 +111,7 @@ const findAllUsers = async (req, res) => {
         })
 }
 
-const getLoggedInUser = async (req, res) => {
-    User.findOne({_id: req.jwtpayload.id})
-        .then((user) => {
-            console.log(user);
-            res.json(user);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-}
+
 
 const getUser = (req, res) =>{
         User.findById({_id: req.params._id})

@@ -1,9 +1,11 @@
-const MovieContoller = require("../controllers/mc.controller");
+const MovieController = require("../controllers/mc.controller");
+const { authenticate } = require('../config/jwt.config');
 
 module.exports = (app) => {
-    app.post("/api/movies", MovieContoller.createMovie)
-    app.get("/api/movies", MovieContoller.getAllMovies)
-    app.get("/api/movies/:id", MovieContoller.getOneMovie)
-    app.put("/api/movies/:id", MovieContoller.updateMovie)
-    app.delete("/api/movies/:id", MovieContoller.deleteMovie)
+    app.post("/api/movies", authenticate, MovieController.createMovie)
+    app.get("/api/movies", MovieController.getAllMovies)
+    app.get("/api/movies/:id", MovieController.getOneMovie)
+    app.get("/api/moviesbyuser/:firstName", authenticate, MovieController.findAllMoviesByUser);
+    app.put("/api/movies/:id", MovieController.updateMovie)
+    app.delete("/api/movies/:id", MovieController.deleteMovie)
 }

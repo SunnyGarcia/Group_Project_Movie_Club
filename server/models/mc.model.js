@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const MovieSchema = new mongoose.Schema({
- 
+
  title: {type: String,
  required: [true, 'Title is required'],
  minLength: [3, 'Must be at least 3 characters long!']},
