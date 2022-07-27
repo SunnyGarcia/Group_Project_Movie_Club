@@ -1,4 +1,5 @@
 const MovieContoller = require("../controllers/mc.controller");
+
 module.exports = (app) => {
     app.post("/api/movies", MovieContoller.createMovie)
     app.get("/api/movies", MovieContoller.getAllMovies)

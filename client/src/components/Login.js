@@ -5,7 +5,7 @@ import { Button, Form, Container } from "react-bootstrap";
 
 const Login = (props) => {
     const [email, setEmail] = useState("");
-    const [password, setPassword = setPassword] = useState("");
+    const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
     const navigate = useNavigate();
@@ -13,7 +13,7 @@ const Login = (props) => {
     const onSubmitHandler = (e) => {
         e.preventDefault();
         axios
-            .post("http://localhost:8000/api/login", 
+            .post("http://localhost:8000/login", 
             {
                 email: email,
                 password: password,
@@ -26,12 +26,21 @@ const Login = (props) => {
             console.log(res.cookies);
             console.log(res);
             console.log(res.data, "we are logged in");
-            navigate("/display");
+            // navigate("/display");
         })
         .catch((err) => {
             console.log(err.response);
             setErrorMessage(err.response.data.message)
         });
+    }
+
+    const handleLogout = () => {
+        axios.post("http://localhost:8000/logout")
+        .then((response) => {
+            console.log(response);
+            navigate("/");
+        })
+        .catch((err) => console.log(err))
     }
 
     return <Container className="my-4">
@@ -60,6 +69,7 @@ const Login = (props) => {
             Login
         </Button>
     </Form>
+    <button onClick={() => handleLogout()}>Logout</button>
 </Container>
 };
 

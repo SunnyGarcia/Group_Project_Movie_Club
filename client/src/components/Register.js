@@ -24,7 +24,7 @@ const Register = (props) => {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:8000/api/register",
+        axios.post("http://localhost:8000/newuser",
         user,
         {
             withCredentials: true,
@@ -75,7 +75,7 @@ const Register = (props) => {
                 type="text"
                 name="lastName"
                 value={user.lastName}
-                onChange={(e) => handle(e)}
+                onChange={(e) => handleChange(e)}
             />
             {
                 errors.lastName ?
