@@ -1,3 +1,4 @@
+
 import React from 'react';
 import LogReg from "./views/LogReg";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -9,7 +10,6 @@ function App() {
             <BrowserRouter>
             <Routes>
                 <Route element={<LogReg />} path="/" />
-                
 
             </Routes>
             </BrowserRouter>
@@ -18,4 +18,3 @@ function App() {
 }
 
 export default App;
-

@@ -1,6 +1,23 @@
 {
+  "name": "group_project_movie_club",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SunnyGarcia/Group_Project_Movie_Club.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SunnyGarcia/Group_Project_Movie_Club/issues"
+  },
+  "homepage": "https://github.com/SunnyGarcia/Group_Project_Movie_Club#readme",
   "dependencies": {
-    "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.6",
     "cookie-session": "^2.0.0",
     "cors": "^2.8.5",
