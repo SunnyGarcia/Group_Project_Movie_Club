@@ -29,6 +29,8 @@ const MovieSchema = new mongoose.Schema({
  
 
  stars: {type: String},
+
+ createdBy: {type: mongoose.Schema.Types.ObjectId, ref: "User"},
   
   
   
