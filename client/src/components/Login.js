@@ -3,10 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Button, Form, Container } from "react-bootstrap";
 
+
+
 const Login = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    
 
     const navigate = useNavigate();
 
@@ -26,7 +29,7 @@ const Login = (props) => {
             console.log(res.cookies);
             console.log(res);
             console.log(res.data, "we are logged in");
-            // navigate("/display");
+            navigate("/movies");
         })
         .catch((err) => {
             console.log(err.response);
@@ -34,14 +37,15 @@ const Login = (props) => {
         });
     }
 
-    const handleLogout = () => {
-        axios.post("http://localhost:8000/logout")
-        .then((response) => {
-            console.log(response);
-            navigate("/");
-        })
-        .catch((err) => console.log(err))
-    }
+    // const handleLogout = () => {
+    //     axios.post("http://localhost:8000/logout")
+    //     .then((response) => {
+    //         console.log(response);
+    //         navigate("/");
+    //     })
+    //     .catch((err) => console.log(err))
+    // }
+
 
     return <Container className="my-4">
     <h2>Login</h2>
@@ -69,7 +73,6 @@ const Login = (props) => {
             Login
         </Button>
     </Form>
-    <button onClick={() => handleLogout()}>Logout</button>
 </Container>
 };
 
