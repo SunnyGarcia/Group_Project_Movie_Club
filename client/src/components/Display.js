@@ -30,7 +30,7 @@ const Display = (props) =>{
     }, [])
 
     useEffect(() => {
-        axios.get("https://localhost:8000/user/secure",
+        axios.get("http://localhost:8000/user/secure",
             { withCredentials: true }
         )
             .then((res) => {
@@ -70,7 +70,10 @@ const Display = (props) =>{
 
     return <Container className="my-4">
         <Stack direction="horizontal" gap="4" className="mb-3">
-        <h1 className="me-auto">Welcome to Movie Club</h1>
+        <h1 className="me-auto">Movie Club: {user.firstName}</h1>
+        <Button variant="outline-success">
+            <Link to={`/user/profiletwo/${user.firstName}`}>Profile: {user.firstName}</Link>
+        </Button>
         <Button variant="outline-info">
             <Link to="/new/movies">Add Movie</Link>
         </Button>
