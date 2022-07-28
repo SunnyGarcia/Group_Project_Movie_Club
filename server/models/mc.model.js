@@ -14,21 +14,35 @@ const MovieSchema = new mongoose.Schema({
  required: [true, 'Director is required'],
  minLength: [3, 'Must be at least 3 characters long!']},
 
- date: {type: String,
- required: [true, 'Date is required'],
- minLength: [3, 'Must be at least 3 characters long!']},
+ yearReleased: {type: Number,
+ required: [true, 'Year of Release is required'],
+ min: [1880, 'I think the first film was made in 1880!']},
 
  description: {type: String,
  required: [true, 'description is required'],
- minLength: [5, 'Must be at least 5 characters long!']},
+ max: [ new Date() , "You cannot enter a release data that happens in the future" ]},
 
- rated: {type: String},
+ movieArt: {
+    type: String,
+ },
+
+ rated: {
+    type: String,
+ },
  
 
  length: {type: String},
  
 
- stars: {type: String},
+ rating: {
+    type: Number,
+    min: [0, "Rating can not be less than 0"],
+    max: [10, "Rating can not be higher than 10"]
+ },
+
+ actor: {
+    type: String,
+ },
 
  createdBy: {type: mongoose.Schema.Types.ObjectId, ref: "User"},
   
