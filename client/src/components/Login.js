@@ -26,7 +26,7 @@ const Login = (props) => {
             console.log(res.cookies);
             console.log(res);
             console.log(res.data, "we are logged in");
-            // navigate("/display");
+            navigate("/movies");
         })
         .catch((err) => {
             console.log(err.response);
