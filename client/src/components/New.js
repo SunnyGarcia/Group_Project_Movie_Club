@@ -110,7 +110,7 @@ const New = () =>{
                     </Form.Group>
 
                     <Form.Group as={Col} controlId="formGridMovieArt">
-                        <Form.Label>Image</Form.Label>
+                        <Form.Label>Image Link/URL</Form.Label>
                         <Form.Control type="text" value={movieArt} onChange={(e) => setMovieArt(e.target.value)} />
                     </Form.Group>
                 </Row>

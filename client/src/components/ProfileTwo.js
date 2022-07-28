@@ -10,7 +10,7 @@ import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
 import { orange } from '@mui/material/colors';
 
-const Profile = (props) =>{
+const ProfileTwo = (props) =>{
 
     const [userMovieList, setUserMovieList] = useState([]);
 
@@ -82,12 +82,16 @@ const Profile = (props) =>{
                                     <Card.Img className="m-auto" variant="top" src={movie.movieArt} style={{width: "302px", height: "200px"}} />
                                 </Card>
                                 <Card.Body>
-                                    <Card.Title className="m-2">
+                                    <Card.Title className="mt-2">
                                         <Link to={`/movies/${movie._id}`}>{movie.title}</Link>
                                     </Card.Title>
                                     <Card.Text>
                                         <p>{movie.description}</p>
                                         <Stack direction="horizontal" gap="3" className="justify-content-md-center my-4">
+                                                <Button variant="outline-danger" onClick={() => deleteMovie(movie._id)}>Delete</Button>
+                                                <Button variant="outline-dark">
+                                                    <Link to={`/edit/movies/${movie._id}`}>Edit</Link>
+                                                </Button>
                                                 <Checkbox {...label} icon={<FavoriteBorderOutlinedIcon />} checkedIcon={<FavoriteOutlinedIcon />} sx={{
                                                     color: pink[800],
                                                     '&.Mui-checked': {
@@ -112,4 +116,4 @@ const Profile = (props) =>{
 </Container>
 }
 
-export default Profile;
+export default ProfileTwo;
