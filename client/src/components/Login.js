@@ -48,7 +48,7 @@ const Login = (props) => {
 
 
     return <Container className="my-4">
-    <h2>Login</h2>
+    <h2>Movie Club Login</h2>
     <p className="error-text">{errorMessage ? errorMessage : "" }</p>
     <Form onSubmit={onSubmitHandler}>
         <Form.Group className="mb-3">
