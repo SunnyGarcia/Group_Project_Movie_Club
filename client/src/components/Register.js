@@ -48,7 +48,7 @@ const Register = (props) => {
     };
 
     return <Container className="my-4">
-    <h2>Register</h2>
+    <h2>Movie Club Register</h2>
     {
         confirmReg ?
         <h4 style={{color : "green"}}>{confirmReg}</h4>
